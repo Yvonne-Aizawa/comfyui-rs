@@ -1,0 +1,123 @@
+{
+    "prompt": {
+        "3": {
+            "inputs": {
+                "seed": "{{seed}}",
+                "steps": 20,
+                "cfg": 8,
+                "sampler_name": "euler",
+                "scheduler": "normal",
+                "denoise": 1,
+                "model": [
+                    "15",
+                    0
+                ],
+                "positive": [
+                    "6",
+                    0
+                ],
+                "negative": [
+                    "7",
+                    0
+                ],
+                "latent_image": [
+                    "5",
+                    0
+                ]
+            },
+            "class_type": "KSampler"
+        },
+        "4": {
+            "inputs": {
+                "ckpt_name": "{{model}}"
+            },
+            "class_type": "CheckpointLoaderSimple"
+        },
+        "5": {
+            "inputs": {
+                "width": 512,
+                "height": 512,
+                "batch_size": 1
+            },
+            "class_type": "EmptyLatentImage"
+        },
+        "6": {
+            "inputs": {
+                "text": "{{positive}}",
+                "clip": [
+                    "15",
+                    1
+                ]
+            },
+            "class_type": "CLIPTextEncode"
+        },
+        "7": {
+            "inputs": {
+                "text": "{{negative}}",
+                "clip": [
+                    "4",
+                    1
+                ]
+            },
+            "class_type": "CLIPTextEncode"
+        },
+        "8": {
+            "inputs": {
+                "samples": [
+                    "3",
+                    0
+                ],
+                "vae": [
+                    "4",
+                    2
+                ]
+            },
+            "class_type": "VAEDecode"
+        },
+        "15": {
+            "inputs": {
+                "model": [
+                    "4",
+                    0
+                ],
+                "clip": [
+                    "4",
+                    1
+                ],
+                "lora_stack": [
+                    "22",
+                    0
+                ]
+            },
+            "class_type": "CR Apply LoRA Stack"
+        },
+        "20": {
+            "inputs": {
+                "filename_prefix": "ComfyUI",
+                "images": [
+                    "8",
+                    0
+                ]
+            },
+            "class_type": "SaveImage"
+        },
+        "22": {
+            "inputs": {
+                "switch_1": "On",
+                "lora_name_1": "{{lora_name_1}}",
+                "model_weight_1": 1,
+                "clip_weight_1": 1,
+                "switch_2": "On",
+                "lora_name_2": "{{lora_name_2}}",
+                "model_weight_2": 1,
+                "clip_weight_2": 1,
+                "switch_3": "On",
+                "lora_name_3": "{{lora_name_3}}",
+                "model_weight_3": 1,
+                "clip_weight_3": 1
+            },
+            "class_type": "CR LoRA Stack"
+        }
+    },
+    "client_id": "{{client_id}}"
+}
